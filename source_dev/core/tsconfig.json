@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "noEmit": true,
+    "target": "esnext",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "moduleResolution": "Bundler",
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "lib": ["es2019", "dom"],
+    "strict": true,
+    "strictNullChecks": true,
+    "alwaysStrict": true,
+    "useDefineForClassFields": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}

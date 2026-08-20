@@ -1,3 +1,20 @@
+# LARD — Left Add / Right Delete
+
+> Форк [signal](https://github.com/ryohey/signal) (MIT): паттерн-ориентированный MIDI-редактор
+> в логике FL Studio, работающий рядом с Ableton Live, с перетаскиванием паттернов в аранжировку.
+>
+> **Документация проекта: [docs/LARD.md](docs/LARD.md)** — архитектура, карта файлов, дорожная карта.
+>
+> Быстрый старт: `cd source_dev` → `npm install` → `npm install --prefix core/electron` → `npm run dev:lard` — откроется окно программы.
+>
+> Структура: исходники в `source_dev/`, готовые сборки в `app_r/`,
+> пресеты тем, языков и рабочих областей — в `Theme/`, `Language/`, `Workspace/`.
+> План текущей перестройки и его состояние — в [task.md](task.md).
+
+---
+
+<sub>Ниже — оригинальный README проекта signal.</sub>
+
 ![logo-github](https://github.com/ryohey/signal/assets/5355966/46834ee4-30d8-4b66-a47c-6e081cc2c09f)
 
 [![Join the chat at https://discord.gg/XQxzNdDJse](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2FXQxzNdDJse%3Fwith_counts%3Dtrue&query=%24.approximate_presence_count&suffix=%20online&style=flat&logo=discord&logoColor=white&label=discord&labelColor=%235865F2&color=%23424549)](https://discord.gg/XQxzNdDJse)
@@ -43,21 +60,22 @@ By setting these constraints, signal aims to offer a streamlined and distraction
 
 ### Installing Dependencies
 
-1. In the project root directory, run the following command to install the required dependencies:
+1. Sources live in `source_dev/`. Install from there:
    ```sh
+   cd source_dev
    npm install
+   npm install --prefix core/electron
    ```
 
 ### Running the Application
 
-> [!NOTE]
-> The first time you run it, you will get a build error, so please run `npm run build` once before running `npm start`.
-
-1. To start the application, run:
+1. To start LARD in its own window, run:
    ```sh
-   npm start
+   npm run dev:lard
    ```
-2. The application should now be running on [http://localhost:3000](http://localhost:3000).
+2. LARD is a desktop program: no script opens a browser. See
+   [`docs/install.md`](docs/install.md) for every launch and build
+   command.
 
 ### Running via Docker
 > [!NOTE] 

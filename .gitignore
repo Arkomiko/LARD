@@ -49,3 +49,20 @@ dist
 
 # JetBrains data
 .idea
+
+#IA generated files
+CLAUDE.md
+.claude
+task.md
+
+# LARD: собранные продукты. Структура папок в репозитории нужна (её держат
+# файлы null-time.txt), а сами сборки весят сотни мегабайт и пересобираются
+# командой Build — хранить их незачем.
+app_r/**
+!app_r/**/
+!app_r/**/null-time.txt
+
+# Промежуточное при сборке инструментов: веб-часть, разложенная в оболочку,
+# и результат упаковщика.
+source_dev/core/tools_shell/renderer/
+source_dev/core/tools_shell/out/

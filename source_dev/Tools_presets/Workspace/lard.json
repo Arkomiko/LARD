@@ -1,0 +1,10 @@
+{
+  "label": "LARD",
+  "view": "track",
+  "panels": {
+    "patternList": { "visible": true, "size": 170 },
+    "trackList": { "visible": true, "size": 240 },
+    "eventList": { "visible": false },
+    "controlPane": { "visible": true, "size": "40%" }
+  }
+}

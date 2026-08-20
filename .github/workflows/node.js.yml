@@ -13,6 +13,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    # LARD: исходники переехали в source_dev, package.json лежит там.
+    defaults:
+      run:
+        working-directory: source_dev
+
     strategy:
       matrix:
         node-version: [20.x]
@@ -25,5 +30,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run lint
-      - run: npm run build:app
+      - run: npm run build -w app
       - run: npm test
