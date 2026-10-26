@@ -1,5 +1,0 @@
-{
-  "watch": ["dist"],
-  "exec": "node scripts/launch.js",
-  "ext": "js,json,html,css"
-}
