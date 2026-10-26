@@ -1,0 +1,17 @@
+<Project>
+  <!-- Общие настройки для всех C#-проектов в папке app/ (MSBuild подхватывает
+       этот файл сам). Здесь же — версия программы, одна на всё. -->
+  <PropertyGroup>
+    <!-- Version — только цифры (так требует .NET), InformationalVersion — как
+         видит пользователь. Меняются вместе. -->
+    <Version>0.0.10</Version>
+    <InformationalVersion>0.0.10a</InformationalVersion>
+    <!-- Без этого .NET дописывает к версии номер коммита git. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Product>MiliPlain</Product>
+    <Authors>Arkomiko</Authors>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+</Project>

@@ -1,111 +1,50 @@
-# LARD — Left Add / Right Delete
+# MiliPlain
 
-> Форк [signal](https://github.com/ryohey/signal) (MIT): паттерн-ориентированный MIDI-редактор
-> в логике FL Studio, работающий рядом с Ableton Live, с перетаскиванием паттернов в аранжировку.
->
-> **Документация проекта: [docs/LARD.md](docs/LARD.md)** — архитектура, карта файлов, дорожная карта.
->
-> Быстрый старт: `cd source_dev` → `npm install` → `npm install --prefix core/electron` → `npm run dev:lard` — откроется окно программы.
->
-> Структура: исходники в `source_dev/`, готовые сборки в `app_r/`,
-> пресеты тем, языков и рабочих областей — в `Theme/`, `Language/`, `Workspace/`.
-> План текущей перестройки и его состояние — в [task.md](task.md).
+**Паттерно-нотный MIDI-редактор.** Пишите ноты в MiliPlain — они уходят в вашу DAW.
 
----
+> Программа в самом начале разработки (версия 0.0.10a). Готовы ядро (проект,
+> паттерны, история отмены, сохранение) и пианоролл с методом LARD. Звука,
+> MIDI и связи с DAW ещё нет. Как собрать — [`GiDo/BUILD.md`](GiDo/BUILD.md).
 
-<sub>Ниже — оригинальный README проекта signal.</sub>
+## Что это
 
-![logo-github](https://github.com/ryohey/signal/assets/5355966/46834ee4-30d8-4b66-a47c-6e081cc2c09f)
+MiliPlain (коротко — «Мипла») — отдельное окно, которое:
 
-[![Join the chat at https://discord.gg/XQxzNdDJse](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fdiscord.com%2Fapi%2Finvites%2FXQxzNdDJse%3Fwith_counts%3Dtrue&query=%24.approximate_presence_count&suffix=%20online&style=flat&logo=discord&logoColor=white&label=discord&labelColor=%235865F2&color=%23424549)](https://discord.gg/XQxzNdDJse)
-![Node.js CI](https://github.com/ryohey/signal/workflows/Node.js%20CI/badge.svg)
+- **заменяет пианоролл любой DAW.** Ноты ставятся методом **LARD** —
+  *Left Add / Right Delete*: левая кнопка мыши ставит ноту и сразу тянет её,
+  правая удаляет, зажатая правая стирает протяжкой;
+- **работает как виртуальный MIDI-контроллер:** сигнал с MIDI-клавиатуры идёт
+  через MiliPlain в DAW в реальном времени;
+- **управляет транспортом DAW** (play / stop / BPM) и синхронизируется с ним
+  через плагин **MiliPlain Bridge** (VST3 и CLAP);
+- **играет и сам**, как MIDI-проигрыватель со встроенным звуком.
 
-[signal](https://signalmidi.app) is a user-friendly music sequencer application developed using web technologies, designed for seamless, cross-platform use, released under the MIT license.
+Паттерн перетаскивается мышью прямо в DAW (становится MIDI-клипом) или в папку
+(становится `.mid`-файлом).
 
-<img width="1024" alt="image" src="https://github.com/user-attachments/assets/0c64ff3d-b095-4359-ab77-9355e04a8bee" />
+**Чего в MiliPlain нет и не будет:** плейлиста, сведения, аудиодорожек.
+Это не DAW.
 
-## Launch
+## Документация
 
-https://signalmidi.app/edit
+Все тексты проекта лежат в папке [`GiDo/`](GiDo/):
 
-## Goals
+- [`GiDo/CHANGELOG.txt`](GiDo/CHANGELOG.txt) — история изменений;
+- [`GiDo/DECISIONS.md`](GiDo/DECISIONS.md) — журнал принятых решений;
+- [`GiDo/ARCHITECTURE.md`](GiDo/ARCHITECTURE.md) — как устроена программа;
+- [`GiDo/map/`](GiDo/map/) — описание каждой папки проекта, начать с
+  [`root.md`](GiDo/map/root.md).
 
-- **Cross-Platform Compatibility:** Ensure accessibility across various devices and operating systems.
-- **Simple User Interface:** Focus on an intuitive, non-complicated user interface for ease of use.
-- **MIDI Compatibility:** Support for MIDI format to facilitate a wide range of music production needs.
+## Поддержать проект
 
-## Concepts
+MiliPlain бесплатен и живёт на донатах:
 
-signal is conceptualized not as a replacement for a Digital Audio Workstation (DAW), but as a complementary tool. It excels during the initial stages of music composition and sketching, allowing artists to quickly and efficiently lay down their musical ideas. To keep the focus on composition without distractions, signal comes with intentional limitations:
+- [Boosty](https://boosty.to/arkomiko)
+- [GitHub Sponsors](https://github.com/sponsors/Arkomiko)
+- [DonationAlerts](https://www.donationalerts.com/r/arkomiko)
 
-- **Basic Sound Quality:** Prioritizes simplicity over high-quality sound production.
-- **No Effects (Fx):** Excludes sound effects to streamline the music creation process.
-- **Lightweight Design:** Optimized for minimal resource usage, ensuring a fast and responsive user experience.
+## Лицензия
 
-By setting these constraints, signal aims to offer a streamlined and distraction-free environment, ideal for artists focusing on the core aspects of musical composition and idea development.
-
-## Setup Instructions
-
-### Cloning the Repository
-
-1. Open your terminal.
-2. Clone the repository by running:
-   ```sh
-   git clone https://github.com/ryohey/signal.git
-   ```
-3. Navigate into the project directory:
-   ```sh
-   cd signal
-   ```
-
-### Installing Dependencies
-
-1. Sources live in `source_dev/`. Install from there:
-   ```sh
-   cd source_dev
-   npm install
-   npm install --prefix core/electron
-   ```
-
-### Running the Application
-
-1. To start LARD in its own window, run:
-   ```sh
-   npm run dev:lard
-   ```
-2. LARD is a desktop program: no script opens a browser. See
-   [`docs/install.md`](docs/install.md) for every launch and build
-   command.
-
-### Running via Docker
-> [!NOTE] 
-> with docker, `npm install` and `npm run build` will not be necessary, and you will only need to install **docker**, then **clone the repository**, then run the command specified below.
-
-1. to run via docker, run:
-   ```sh
-   docker compose up
-   # or 
-   docker compose up -d
-   ```
-2. The application should now be accessible on [http://localhost:3000](http://localhost:3000).
-
-## Contribution
-
-As the creator of signal, I, [@ryohey](https://github.com/ryohey), welcome any form of contribution to this music sequencer application. Your support, whether it's through code improvements, bug fixes, or feedback, is invaluable in enhancing and evolving signal.
-
-### Reporting Bugs
-
-- Encountered a bug? Please use [GitHub Issues](https://github.com/ryohey/signal/issues) to report it. Your reports are crucial in identifying and resolving problems, ensuring a smoother experience for everyone.
-
-### Join Our Discord Community
-
-- I've set up a [Discord community](https://discord.gg/XQxzNdDJse) for signal users. It's a space for mutual support, sharing tips, and discussing music production. Your participation would be a wonderful addition to our growing community.
-
-### Support Through GitHub Sponsors
-
-- signal is a personal project that I've been passionately developing. If you like what you see and wish to support my efforts, you can do so through [GitHub Sponsors](https://github.com/sponsors/ryohey). Even the smallest contribution can make a significant difference and is deeply appreciated.
-
-Your engagement, big or small, contributes greatly to the development of signal. Thank you for being a part of this journey, and I'm eager to see the impact of your contributions on this application.
-
-## License
-MIT. See [LICENSE](/LICENSE)
+Лицензия ещё выбирается, пока действует временный текст из [`LICENSE`](LICENSE).
+Музыка, MIDI-файлы и проекты, сделанные в MiliPlain, полностью принадлежат вам
+и могут использоваться где угодно, в том числе коммерчески.

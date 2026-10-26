@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Движок MiliPlain: файлы проектов, резервные копии, настройки, журнал.
+       Обычная библиотека .NET без привязки к Windows. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>MiliPlain.Engine</RootNamespace>
+  </PropertyGroup>
+
+</Project>

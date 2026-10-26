@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/engine-tests/">
+    <Project Path="engine-tests/MiliPlain.Engine.Tests.csproj" />
+  </Folder>
+  <Folder Name="/engine/">
+    <Project Path="engine/MiliPlain.Engine.csproj" />
+  </Folder>
+  <Folder Name="/shell/">
+    <Project Path="shell/MiliPlain.Shell.csproj" />
+  </Folder>
+</Solution>

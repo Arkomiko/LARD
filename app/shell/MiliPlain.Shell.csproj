@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Оболочка MiliPlain для Windows: окно с WebView2, в котором живёт интерфейс.
+       Собирается в MiliPlain.exe. -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <AssemblyName>MiliPlain</AssemblyName>
+    <RootNamespace>MiliPlain.Shell</RootNamespace>
+    <!-- Пакет WebView2 приносит ещё и WPF-версию элемента, а её ссылка на WindowsBase
+         даёт безвредное предупреждение о версиях (MSB3277). Нам нужна только
+         WinForms-версия, поэтому предупреждение понижено до сообщения. -->
+    <MSBuildWarningsAsMessages>$(MSBuildWarningsAsMessages);MSB3277</MSBuildWarningsAsMessages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4314.35" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\engine\MiliPlain.Engine.csproj" />
+  </ItemGroup>
+
+  <!-- Собранный интерфейс (app/ui/dist, команда npm run build) кладётся рядом
+       с MiliPlain.exe в папку ui. Без него окно покажет подсказку, что делать. -->
+  <ItemGroup>
+    <None Include="..\ui\dist\**\*" Link="ui\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+{
+  // Настройки проверки типов TypeScript. Сборку делает Vite, а tsc только
+  // проверяет, что типы сходятся (noEmit).
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    // Обращение к массиву по индексу может дать undefined — пусть компилятор
+    // напоминает об этом, а не программа падает.
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "types": ["vite/client"]
+  },
+  "include": ["src", "tests", "vite.config.ts"]
+}
